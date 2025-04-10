@@ -3,6 +3,7 @@
 #include "include/raylib.h"
 
 #include "global.hpp"
+#include "pong.hpp"
 
 void player::draw()
 {
@@ -29,4 +30,24 @@ void player::posyadd()
 void player::posysub()
 {
   this->posz.y -= this->speedy * WINDOW_DELTA_TIME;
+}
+
+void player::bordervertical()
+{
+  if (this->posz.y > WINDOW_HEIGHT - this->posz.height)
+  {
+    this->posz.y = WINDOW_HEIGHT - this->posz.height;
+  }
+
+  if (this->posz.y < 0)
+  {
+    this->posz.y = 0;
+  }
+}
+
+void player::collisionwithpong(pong *pong)
+{
+  if (CheckCollisionCircleRec(pong->pos, pong->radius, this->posz))
+  {
+  }
 }

@@ -2,6 +2,8 @@
 
 #include "include/raylib.h"
 
+#include "pong.hpp"
+
 class player
 {
 public:
@@ -15,4 +17,6 @@ public:
   void input();
   void posyadd();
   void posysub();
+  void bordervertical();
+  void collisionwithpong(pong *pong);
 };
