@@ -1,7 +1,4 @@
-
-// todo: make the player better
-
-
+#include <stdio.h>
 #include "include/raylib.h"
 
 #include "global.hpp"
@@ -14,20 +11,32 @@ int main()
   SetTargetFPS(WINDOW_FPS);
 
   pong pong;
-  pong.radius = 20;
+  pong.radius = 30;
   pong.pos.x = WINDOW_WIDTH / 2 - pong.radius / 2;
   pong.pos.y = WINDOW_HEIGHT / 2 - pong.radius / 2;
   pong.speedx = 500;
-  pong.speedy = 100;
+  pong.speedy = 80;
   pong.color = WHITE;
 
   player player1;
-  player1.posz.width = 10;
+  player1.posz.width = 15;
   player1.posz.height = 100;
+  player1.posz.x = 0;
+  player1.posz.y = 0;
   player1.speedy = 500;
   player1.color = WHITE;
   player1.keyup = KEY_W;
   player1.keydown = KEY_S;
+
+  player player2;
+  player2.posz.width = 15;
+  player2.posz.height = 100;
+  player2.posz.x = WINDOW_WIDTH - player2.posz.width;
+  player2.posz.y = 0;
+  player2.speedy = 500;
+  player2.color = WHITE;
+  player2.keyup = KEY_P;
+  player2.keydown = KEY_L;
 
   while (!WindowShouldClose())
   {
@@ -35,12 +44,17 @@ int main()
     pong.bordervertical();
 
     player1.input();
+    player1.bordervertical();
+
+    player2.input();
+    player2.bordervertical();
 
     BeginDrawing();
     ClearBackground(BLUE);
 
     pong.draw();
     player1.draw();
+    player2.draw();
 
     DrawFPS(0, 0);
     EndDrawing();
