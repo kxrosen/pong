@@ -1,0 +1,1 @@
+Do not trust github language percentage feature, my code is fully c++ trust
