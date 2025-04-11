@@ -44,9 +44,15 @@ int main()
     pong.bordervertical();
 
     player1.input();
-    player1.bordervertical();
-
     player2.input();
+
+    player1.collisionwithpong(&pong);
+    player2.collisionwithpong(&pong);
+
+    player1.GODMODE(&pong);
+    player2.GODMODE(&pong);
+
+    player1.bordervertical();
     player2.bordervertical();
 
     BeginDrawing();
