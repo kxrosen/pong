@@ -27,16 +27,4 @@ void pong::bordervertical()
     this->pos.y = 0 + this->radius;
     this->speedy *= -1;
   }
-
-  // todo: remove this when not debugging
-  if (this->pos.x > WINDOW_WIDTH - this->radius)
-  {
-    this->pos.x = WINDOW_WIDTH - this->radius;
-    this->speedx *= -1;
-  }
-  if (this->pos.x < 0 + this->radius)
-  {
-    this->pos.x = 0 + this->radius;
-    this->speedx *= -1;
-  }
 }
