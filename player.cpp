@@ -49,5 +49,11 @@ void player::collisionwithpong(pong *pong)
 {
   if (CheckCollisionCircleRec(pong->pos, pong->radius, this->posz))
   {
+    pong->speedx *= -1;
   }
+}
+
+void player::GODMODE(pong *pong)
+{
+  this->posz.y = pong->pos.y - this->posz.height / 2;
 }

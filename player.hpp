@@ -19,4 +19,5 @@ public:
   void posysub();
   void bordervertical();
   void collisionwithpong(pong *pong);
+  void GODMODE(pong *pong);
 };
