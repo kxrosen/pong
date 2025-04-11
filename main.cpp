@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include "include/raylib.h"
 
 #include "global.hpp"
@@ -10,8 +11,10 @@ int main()
   InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE);
   SetTargetFPS(WINDOW_FPS);
 
+  bool isinmenu = true;
+
   pong pong;
-  pong.radius = 30;
+  pong.radius = 25;
   pong.pos.x = WINDOW_WIDTH / 2 - pong.radius / 2;
   pong.pos.y = WINDOW_HEIGHT / 2 - pong.radius / 2;
   pong.speedx = 500;
@@ -19,8 +22,8 @@ int main()
   pong.color = WHITE;
 
   player player1;
-  player1.posz.width = 15;
-  player1.posz.height = 100;
+  player1.posz.width = 20;
+  player1.posz.height = 150;
   player1.posz.x = 0;
   player1.posz.y = 0;
   player1.speedy = 500;
@@ -29,8 +32,8 @@ int main()
   player1.keydown = KEY_S;
 
   player player2;
-  player2.posz.width = 15;
-  player2.posz.height = 100;
+  player2.posz.width = 20;
+  player2.posz.height = 150;
   player2.posz.x = WINDOW_WIDTH - player2.posz.width;
   player2.posz.y = 0;
   player2.speedy = 500;
@@ -40,29 +43,42 @@ int main()
 
   while (!WindowShouldClose())
   {
-    pong.updatepos();
-    pong.bordervertical();
-
-    player1.input();
-    player2.input();
-
-    player1.collisionwithpong(&pong);
-    player2.collisionwithpong(&pong);
-
-    player1.GODMODE(&pong);
-    player2.GODMODE(&pong);
-
-    player1.bordervertical();
-    player2.bordervertical();
-
     BeginDrawing();
     ClearBackground(BLUE);
 
-    pong.draw();
-    player1.draw();
-    player2.draw();
+    if (isinmenu == true)
+    {
+      DrawText("press enter", 0, 0, 50, WHITE);
+      if (IsKeyPressed(KEY_ENTER))
+      {
+        isinmenu = false;
+      }
+    }
 
-    DrawFPS(0, 0);
+    if (isinmenu == false)
+    {
+      pong.updatepos();
+      pong.bordervertical();
+
+      player1.input();
+      player2.input();
+
+      player1.collisionwithpong(&pong);
+      player2.collisionwithpong(&pong);
+
+      player1.GODMODE(&pong);
+      player2.GODMODE(&pong);
+
+      player1.bordervertical();
+      player2.bordervertical();
+
+      pong.draw();
+      player1.draw();
+      player2.draw();
+
+      DrawFPS(0, 0);
+    }
+
     EndDrawing();
   }
 
